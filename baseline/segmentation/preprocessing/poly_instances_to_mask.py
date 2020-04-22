@@ -63,7 +63,7 @@ def filter_poly(
         
         if clouds_pieces_path:
             cloud_piece_file = os.path.join(clouds_pieces_path, filename + '.png')
-            cloud_piece = (imageio.imread(cloud_piece_file )>0.4)*1
+            cloud_piece = (imageio.imread(cloud_piece_file )<0.4)*1
         else:
             cloud_piece = np.ones((10,10))
 
