@@ -6,7 +6,7 @@ This is a source code repository for DEEP LEARNING FOR HIGH-FREQUENCY CHANGE DET
 
 * Paper ([arXiv](https://arxiv.org/herewillbeourpaper), [Journal](https://arxiv.org/herewillbeourpaper))
 * [Data](https://arxiv.org/herewillbeourdata)
-* [Deforestation monitoring system](http://bit.ly/clearcutq)
+* [Deforestation monitoring system](http://bit.ly/clearcutq) (for more details, see [this blog post](https://www.quantumobile.com/company/rd-blog/clearcut-segmentation-on-satellite-images-using-deep-learning/))
 
 ## Repository structure info
  * `baseline` - scripts for deforestation masks predictions with baseline models
