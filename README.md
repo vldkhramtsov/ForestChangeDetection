@@ -13,8 +13,7 @@ This is a source code repository for DEEP LEARNING FOR HIGH-FREQUENCY CHANGE DET
  * `time-dependent` - scripts for forest change segmentation with time-dependent models, including Siamese, UNet-LSTM, UNet-diff, UNet3D models
 
 ## Setup
-All dependencies are given in requirements.txt
-Main setup configuration:
+All dependencies are given in requirements.txt. Main setup configuration:
 * python 3.6
 * pytorch==1.4.0
 * [catalyst](https://github.com/catalyst-team/catalyst)==19.05
