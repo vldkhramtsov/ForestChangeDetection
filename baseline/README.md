@@ -28,7 +28,7 @@ For correct setup, you need to create peps_download_config.ini (it could be done
 
 7) Download global land cover map (for the Central Europe region): `wget https://s3-eu-west-1.amazonaws.com/vito.landcover.global/2015/E020N60_ProbaV_LC100_epoch2015_global_v2.0.2_products_EPSG-4326.zip`
     * Unzip archive
-    * Run script `python prepare_landcover.py --save_path ... --data_path .../E020N60_ProbaV_LC100_epoch2015_global_v2.0.2_discrete-classification_EPSG-4326.tif`
+    * Run script `python prepare_landcover.py --save_path ... --data_path .../E020N60_ProbaV_LC100_epoch2015_global_v2.0.2_discrete-classification_EPSG-4326.tif` (*check the CRS of your input tile images, and correct CRS of the land cover map in the script, if it does not match with input CRS.*)
  
 *(land cover map source: Buchhorn, M., Smets, B., Bertels, L., Lesiv, M., Tsendbazar, N.-E., Herold, M., Fritz, S. (2019). Copernicus Global Land Service: Land Cover 100m, epoch 2015, Globe (Version V2.0.2) [Data set]. Zenodo. DOI: 10.5281/zenodo.3243509 , for more details see https://lcviewer.vito.be/about)*
 
