@@ -19,7 +19,7 @@ All dependencies are given in requirements.txt. Main setup configuration:
 * [catalyst](https://github.com/catalyst-team/catalyst)==19.05
 * [segmentation_models](https://github.com/catalyst-team/catalyst)==0.1.0
 
-Tested with Ubuntu + Nvidia GTX1080ti with Cuda==10.1. 
+Tested with Ubuntu + Nvidia GTX1080ti with Cuda==10.1, and Nvidia GTX 1060 with Cuda==10.2. 
 CPU mode also should work, but not tested.
 
 ## Dataset
