@@ -1,5 +1,5 @@
 
-# Forest Change Detection
+# Forest Change Detection paper
 
 ## Description
 This is a source code repository for DEEP LEARNING FOR HIGH-FREQUENCY CHANGE DETECTION IN UKRAINIAN FOREST ECOSYSTEM WITH SENTINEL-2 (Kostiantyn Isaienkov, Michael Yushchuk, Vladislav Khramtsov, Oleg Seliverstov), 2020.
