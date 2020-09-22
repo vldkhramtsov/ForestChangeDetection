@@ -1,9 +1,6 @@
 
 build:
-	docker build -t planet_image .
+	docker build -t clearcut_image .
 
 launch:
-	docker run --shm-size 8G -v ${PWD}/:/planet -ti planet_image /bin/bash
-	# docker run --runtime nvidia --shm-size 8G -v ${PWD}/:/planet -ti planet_image /bin/bash
-
-# shared memmory issue for PyTorch: https://github.com/pytorch/pytorch/issues/2244
+	docker run -v ${PWD}/:/sentinel -ti clearcut_image /bin/bash

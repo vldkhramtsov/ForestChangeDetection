@@ -97,7 +97,7 @@ def score(test_polys, truth_polys, threshold=0.5):
                     true_pos_count += 1
                     total_count+=1
                 else:
-                    false_pos_count += 1
+                    false_neg_count += 1
                     total_count+=1
             '''            
             for geom in test_poly:    

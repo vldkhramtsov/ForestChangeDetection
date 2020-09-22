@@ -47,27 +47,28 @@ def count_channels(channels):
     return count
 
 
-def filter_by_channels(image_tensor, channels, neighbours):
-    #['TCI','B08','B8A','B10','B11','B12', 'NDVI', 'NDMI']
+def filter_by_channels(image_tensor, channels, neighbours, num_channels_total=3):
+    # Sentinel: ['TCI','B08','B8A','B10','B11','B12', 'NDVI', 'NDMI']
+    # Planet: ['TCI', 'Alpha']
     result = []
     for i in range(neighbours):
         for ch in channels:
             if ch == 'rgb':
-                result.append(image_tensor[:, :, (0+i*10):(3+i*10)])
+                result.append(image_tensor[:, :, (0+i*num_channels_total):(3+i*num_channels_total)])
             elif ch == 'b8':
-                result.append(image_tensor[:, :, (3+i*10):(4+i*10)])
+                result.append(image_tensor[:, :, (3+i*num_channels_total):(4+i*num_channels_total)])
             elif ch == 'b8a':
-                result.append(image_tensor[:, :, (4+i*10):(5+i*10)])
+                result.append(image_tensor[:, :, (4+i*num_channels_total):(5+i*num_channels_total)])
             elif ch == 'b10':
-                result.append(image_tensor[:, :, (5+i*10):(6+i*10)])
+                result.append(image_tensor[:, :, (5+i*num_channels_total):(6+i*num_channels_total)])
             elif ch == 'b11':
-                result.append(image_tensor[:, :, (6+i*10):(7+i*10)])
+                result.append(image_tensor[:, :, (6+i*num_channels_total):(7+i*num_channels_total)])
             elif ch == 'b12':
-                result.append(image_tensor[:, :, (7+i*10):(8+i*10)])
+                result.append(image_tensor[:, :, (7+i*num_channels_total):(8+i*num_channels_total)])
             elif ch == 'ndvi':
-                result.append(image_tensor[:, :, (8+i*10):(9+i*10)])
+                result.append(image_tensor[:, :, (8+i*num_channels_total):(9+i*num_channels_total)])
             elif ch == 'ndmi':
-                result.append(image_tensor[:, :, (9+i*10):(10+i*10)])
+                result.append(image_tensor[:, :, (9+i*num_channels_total):(10+i*num_channels_total)])
             else:
                 raise Exception(f'{ch} channel is unknown!')
     return np.concatenate(result, axis=2)

@@ -45,13 +45,13 @@ class Dataset:
         if len(self.channels) == 0:
             raise Exception('You have to specify at least one channel.')
 
-        instance_name = '_'.join([data_info_row['name'], data_info_row['position']])
+        instance_name = '_'.join([data_info_row['name'], str(data_info_row['position'])])
         image_path = get_filepath(
-            self.dataset_path, data_info_row['dataset_folder'], self.images_folder,
+            self.dataset_path, data_info_row['name'], self.images_folder,
             instance_name, file_type=self.image_type
         )
         mask_path = get_filepath(
-            self.dataset_path, data_info_row['dataset_folder'], self.masks_folder,
+            self.dataset_path, data_info_row['name'], self.masks_folder,
             instance_name, file_type=self.mask_type
         )
 
@@ -146,13 +146,13 @@ class SiamDataset(Dataset):
     def __getitem__(self, idx):
         if len(self.channels) <2 :
             raise Exception('You have to specify at least two channels.')
-        
+
         data_info_row = self.df.iloc[idx]
-        instance_name = '_'.join([data_info_row['name'], data_info_row['position']])
+        instance_name = '_'.join([data_info_row['name'], str(data_info_row['position'])])
         images_array, masks_array = [], []
         for k in range(1,self.num_images+1):
             image_path = get_filepath(
-                self.dataset_path, data_info_row['dataset_folder'], self.images_folder,
+                self.dataset_path, data_info_row['name'], self.images_folder,
                 instance_name+f'_{k}', file_type=self.image_type
             )
 
@@ -164,7 +164,7 @@ class SiamDataset(Dataset):
 
         
         mask_path = get_filepath(
-            self.dataset_path, data_info_row['dataset_folder'], self.masks_folder,
+            self.dataset_path, data_info_row['name'], self.masks_folder,
             instance_name, file_type=self.mask_type
         )
         masks_array=read_tensor(mask_path)
@@ -238,10 +238,10 @@ class LstmDataset2(Dataset):
     def __getitem__(self, idx):
         if len(self.channels) <2 :
             raise Exception('You have to specify at least two channels.')
-        
+
         data_info_row = self.df.iloc[idx]
-        instance_name = '_'.join([data_info_row['name'], data_info_row['position']])
-        
+        instance_name = '_'.join([data_info_row['name'], str(data_info_row['position'])])
+
         images_array, masks_array = [], []
         for k in range(1,self.num_images+1):
             image_path = get_filepath(
@@ -317,7 +317,7 @@ class LstmDataset(Dataset):
             raise Exception('You have to specify at least two channels.')
         
         data_info_row = self.df.iloc[idx]
-        instance_name = '_'.join([data_info_row['name'], data_info_row['position']])
+        instance_name = '_'.join([data_info_row['name'], str(data_info_row['position'])])
         
         images_array, masks_array = [], []
         #for k in range(1,self.num_images+1):

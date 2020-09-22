@@ -117,12 +117,12 @@ def evaluate(
     test_polys, truth_polys = [], []
     for ind, image_info in tqdm(filenames.iterrows()):
 
-        name = '_'.join([image_info['name'], image_info['position']])
+        name = '_'.join([image_info['name'], str(image_info['position'])])
 
         prediction = cv.imread(f'{os.path.join(predictions_path, name)}.png')
 
         mask = cv.imread(os.path.join(
-            datasets_path, image_info['dataset_folder'],
+            datasets_path, image_info['name'],
             masks_folder, f'{name}.{mask_type}'
         ))
 

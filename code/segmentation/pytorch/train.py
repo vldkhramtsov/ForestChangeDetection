@@ -29,8 +29,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     arg = parser.add_argument
 
-    arg('--batch_size', type=int, default=64)
-    arg('--num_workers', type=int, default=4)
+    arg('--batch_size', type=int, default=32)
+    arg('--num_workers', type=int, default=1)
     arg('--neighbours', type=int, default=1)
     arg('--epochs', '-e', type=int, default=100)
     arg('--lr', type=float, default=1e-3)
@@ -61,9 +61,9 @@ def train(args):
     model.encoder.conv1 = nn.Conv2d(
         count_channels(args.channels)*args.neighbours, 64, kernel_size=(7, 7),
         stride=(2, 2), padding=(3, 3), bias=False)
-    
+
     model, device = UtilsFactory.prepare_model(model)
-    
+
     train_df = pd.read_csv(args.train_df).to_dict('records')
     val_df = pd.read_csv(args.val_df).to_dict('records')
 
@@ -83,12 +83,12 @@ def train(args):
         )
 
         criterion = get_loss(args.loss)
-        
+
         runner = SupervisedRunner()
         if args.model_weights_path:
             checkpoint = torch.load(args.model_weights_path, map_location='cpu')
             model.load_state_dict(checkpoint['model_state_dict'])
-        
+
         runner.train(
             model=model,
             criterion=criterion,
@@ -119,7 +119,7 @@ def train(args):
         net.fit_generator(
             loaders['train'], loaders['valid'],
             epochs=args.epochs,
-            callbacks=[ModelCheckpoint(f'{save_path}/checkpoints/best.pth', ), 
+            callbacks=[ModelCheckpoint(f'{save_path}/checkpoints/best.pth', ),
                        MultiStepLR(milestones=[10, 40, 80, 150, 300], gamma=0.1)]
             )
 

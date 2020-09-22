@@ -47,9 +47,9 @@ def predict(
         print("Prediction directory created.")
 
     for _, image_info in tqdm(test_df.iterrows()):
-        filename = '_'.join([image_info['name'], image_info['position']])
+        filename = '_'.join([image_info['name'], str(image_info['position'])])
         image_path = get_filepath(
-            data_path, image_info['dataset_folder'],
+            data_path, image_info['name'],
             'images', filename,
             file_type='tiff'
         )
@@ -114,7 +114,7 @@ def tta_pred_eval(
         print("Prediction directory created.")
 
     for _, image_info in tqdm(test_df.iterrows()):
-        filename = '_'.join([image_info['name'], image_info['position']])
+        filename = '_'.join([image_info['name'], str(image_info['position'])])
         image_path = get_filepath(
             data_path, image_info['dataset_folder'],
             'images', filename,
