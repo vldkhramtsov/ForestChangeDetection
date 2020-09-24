@@ -122,7 +122,7 @@ class PreparePieces:
             writer = csv.writer(csvFile)
             writer.writerow([
                 'original_image', 'piece_image', 'piece_geojson',
-                'start_x', 'start_y', 'width', 'height'
+                'start_x', 'start_y', 'width', 'height', 'clouds_percent'
             ])
 
             for j in range(0, src.height // self.height):
@@ -153,19 +153,20 @@ class PreparePieces:
                             f'{data_path}/geojson_polygons/{piece_geojson_name}',
                             driver='GeoJSON'
                         )
-                        if True: # cld_raster.sum() / cld_raster.size < MAXIMUM_CLOUD_PERCENTAGE_ALLOWED:
-                            image_array = reshape_as_image(raster_window)
-                            meta = src.meta
-                            meta['height'] = image_array.shape[0]
-                            meta['width'] = image_array.shape[1]
-                            meta['transform'] = rasterio.windows.transform(window, src.transform)
-                            with rasterio.open(f'{data_path}/images/{piece_name}', 'w', **meta) as dst:
-                                for ix in range(image_array.shape[2]):
-                                    dst.write(image_array[:, :, ix], ix + 1)
 
-                            writer.writerow([filename, piece_name, piece_geojson_name,
-                                            i * self.width, j * self.height,
-                                            self.width, self.height])
+                        clouds_rate = cld_raster.sum() / cld_raster.size
+                        image_array = reshape_as_image(raster_window)
+                        meta = src.meta
+                        meta['height'] = image_array.shape[0]
+                        meta['width'] = image_array.shape[1]
+                        meta['transform'] = rasterio.windows.transform(window, src.transform)
+                        with rasterio.open(f'{data_path}/images/{piece_name}', 'w', **meta) as dst:
+                            for ix in range(image_array.shape[2]):
+                                dst.write(image_array[:, :, ix], ix + 1)
+
+                        writer.writerow([filename, piece_name, piece_geojson_name,
+                                        i * self.width, j * self.height,
+                                        self.width, self.height, clouds_rate])
 
     def split_mask(self, mask_path, save_mask_path, image_pieces_path):
         pieces_info = pd.read_csv(
