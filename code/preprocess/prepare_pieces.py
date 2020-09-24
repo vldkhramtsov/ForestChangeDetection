@@ -153,7 +153,7 @@ class PreparePieces:
                             f'{data_path}/geojson_polygons/{piece_geojson_name}',
                             driver='GeoJSON'
                         )
-                        if cld_raster.sum() / cld_raster.size > MAXIMUM_CLOUD_PERCENTAGE_ALLOWED:
+                        if True: # cld_raster.sum() / cld_raster.size < MAXIMUM_CLOUD_PERCENTAGE_ALLOWED:
                             image_array = reshape_as_image(raster_window)
                             meta = src.meta
                             meta['height'] = image_array.shape[0]

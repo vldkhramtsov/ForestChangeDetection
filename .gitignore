@@ -132,3 +132,5 @@ dmypy.json
 data/*
 code/notebooks/*
 code/tmp/*
+LOGS/*
+code/segmentation/pytorch/LOGS/*

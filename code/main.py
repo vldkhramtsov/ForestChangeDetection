@@ -9,13 +9,13 @@ from preparation.sentinel_download import SentinelDownload
 
 def prepare_dataset():
 
-    download_and_process()
+    # download_and_process()
 
     for filename in os.listdir(settings.MODEL_TIFFS_DIR):
         os.system(f'python3 prepare_pieces.py --tiff_file={filename}')
 
-    imd = ImageDifference()
-    imd.get_diff_and_split()
+    # imd = ImageDifference()
+    # imd.get_diff_and_split()
 
 
 if __name__ == '__main__':

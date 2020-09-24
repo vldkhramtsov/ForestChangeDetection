@@ -16,9 +16,9 @@ df = pd.read_csv('../data/predictions/S2L/S2L/predictionstest_results.csv')
 df = df[df['dice_score'] < 0.1]
 
 for _, row in df.iterrows():
-    img_file = f"{row['dataset_folder'].replace('diff', 'tmp')}/images/{row['name']}.tiff"
+    img_file = f"{row['dataset_folder']}/images/{row['name']}.tiff"
     mask_file = f"{row['dataset_folder']}/masks/{row['name']}.png"
-    pred_file = f"/planet/data/predictions/S2L/S2L/predictions/{row['name']}.png"
+    pred_file = f"/sentinel/data/predictions/S2L/S2L/predictions/{row['name']}.png"
 
     image = readtiff(img_file)
     mask = imageio.imread(mask_file)

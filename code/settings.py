@@ -55,8 +55,8 @@ POLYS_BUFFERED_PATH = path_exists_or_create(f'{DATA_PATH}/polygons_time_limiting
 
 MODEL_TIFFS_DIR = path_exists_or_create(f'{DATA_PATH}/images')
 PIECES_DIR = path_exists_or_create(f'{DATA_PATH}/results')
-# DIFF_PATH = path_exists_or_create(f'{DATA_PATH}/diff')
-DIFF_PATH = path_exists_or_create(f'{DATA_PATH}/tmp')
+DIFF_PATH = path_exists_or_create(f'{DATA_PATH}/diff')
+# DIFF_PATH = path_exists_or_create(f'{DATA_PATH}/tmp')
 
 SENTINEL_NUM_BANDS = 3
 SCENE_PREFIX = '.jp2'
