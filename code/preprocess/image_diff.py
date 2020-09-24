@@ -88,10 +88,19 @@ class ImageDifference:
         def path_to_image(tile, path, x, y, ext='.png'):
             return os.path.join(self.data_path, tile, path, tile + '_' + x + '_' + y + ext)
 
-        pieces = os.listdir(f"{self.data_path}/{tile_current}/{self.images_path}")
-        xs = [piece.split('_')[-2:][0] for piece in pieces]
-        ys = [piece.split('_')[-2:][1].split('.')[0] for piece in pieces]
+        # pieces = os.listdir(f"{self.data_path}/{tile_current}/{self.images_path}")
+        # xs = [piece.split('_')[-2:][0] for piece in pieces]
+        # ys = [piece.split('_')[-2:][1].split('.')[0] for piece in pieces]
 
+        pieces = pd.read_csv(f"{self.data_path}/{tile_current}/image_pieces.csv")
+        pieces = pieces[pieces['clouds_percent'] < settings.MAXIMUM_CLOUD_PERCENTAGE_ALLOWED]
+        # pieces = pieces[pieces['']]
+        # e.g. 20190505_36UXA_TCI_8_25.tiff -> x: 8, y: 25
+        pieces['x'] = pieces['piece_image'].apply(lambda x: x.split('_')[-2:][0])
+        pieces['y'] = pieces['piece_image'].apply(lambda y: y.split('_')[-2:][1].split('.')[0])
+        xs = pieces['x'].values
+        ys = pieces['y'].values
+        print(pieces.head())
         is_path_tile = {}
         for idx in range(len(xs)):
             images = {}
